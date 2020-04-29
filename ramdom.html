@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Random</title>
+    </head>
+    <body>
+        <script>
+            var Random = function(value) {
+                if (value > 0) {
+                    var i=0;
+                    var li=[];
+                    while(i==0){
+                        i=1;
+                        var x = Math.random() * (9 - 0) + 0;
+                        console.log(x);
+                        for(i=0;i<li.length;i++){
+                            if(x==li[i]){
+                                i=0;
+                                break;
+                            }
+                        }
+                    }
+                    li.push(x);
+                    return countdown(value - 1);
+                }
+                else {
+                    return li;
+                }
+            };
+            var num=Random(9).join;
+            console.log(num);
+        </script>
+    </body>
+</html>

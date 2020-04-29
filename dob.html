@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>DOB</title>
+    </head>
+    <body>
+        <input type="datetime-local" id="DOB">
+        <button onclick="calc()">click here</button>
+        <script>
+            function calc() {
+                var todate=new Date().getDate();
+                var tomonths= new Date().getMonth();
+                var toyear= new Date().getFullYear();
+                var tohr= new Date().getHours();
+                var tomin =new Date().getMinutes();
+                console.log(todate,tomonths,toyear,tohr,tomin);
+                var x = document.getElementById("DOB").value;
+                var br=new Date(x);
+                var brdate=br.getDate();
+                var brmonths=br.getMonth();
+                var bryr=br.getFullYear();
+                var brhr=br.getHours();
+                var brmin=br.getMinutes();
+                console.log(br,brdate,brmonths,bryr,brhr,brmin);
+                var age,totalmonth,days,hours,secounds;
+                if(tomonths<brmonths){
+                    if(todate<brdate){
+                        age=toyear-bryr-1;
+                    }
+                    else{
+                        age=toyear-bryr;
+                    }
+                }
+                else{
+                    age=toyear-bryr;
+                }
+                if(tomonths<brmonths){
+                    if(todate<brdate){
+                        totalmonth=(age*12)+(-(brmonths-tomonths));
+                    }
+                    else{
+                        totalmonth=(age*12)+(-(brmonths-tomonths));
+                    }
+                }
+                else{
+                    totalmonth=(age*12)+(brmonths-tomonths);
+                }
+                var days=(age*365)+((brmonths-tomonths)*30);
+                var hours=days*24;
+                var min=hours*60;
+                var secounds=min*60;
+                console.log("Total years: "+age); 
+                console.log("Total months: "+totalmonth);
+                console.log("Total days: "+days);
+                console.log("Total Hours: "+hours);
+                console.log("Total Secs: "+seconds);
+          
+}
+        </script>
+    </body>
+</html>
