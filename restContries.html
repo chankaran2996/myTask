@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contries</title>
+    </head>
+    <body>
+        <div id="display"></div>
+        <script>
+var request = new XMLHttpRequest(),
+  method = 'GET',
+  url = 'https://restcountries.eu/rest/v2/all';
+request.open(method, url, false);
+request.onload = function () {
+  const data = JSON.parse(this.response)
+// const cap = data.filter((item)=>{
+// return item.name;
+// })
+console.log(data);
+console.log(data.length);
+console.log(data[0].name,data[0].flag);
+// const flags = data.filter((item)=>{
+// return item.flag;
+// })
+// var contryCode=[];
+// var fl=[];
+for( var i=0;i<data.length;i++){
+// console.log(cap[i].name);
+// document.getElementById("display").innerHTML=cap[i].name;
+// var x=document.getElementById("display");
+// x.appendChild(cap[i].name);
+// console.log(i);
+var node = document.createElement("LI");
+  var textnode = document.createTextNode(data[i].name);
+  node.appendChild(textnode);
+  document.getElementById("display").appendChild(node);
+  var x = document.createElement("IMG");
+  x.setAttribute("src", data[i].flag);
+  x.setAttribute("width", "100");
+  x.setAttribute("height", "100");
+  var city=data[i].capital;
+  x.addEventListener("click", function() {Weatherdp(city)}, false);
+  document.getElementById("display").appendChild(x);
+}
+function Weatherdp(city){
+  var link = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&apikey="+"bb0a5a97e99ae93b148d219df2f4e97f";
+var request1 = new XMLHttpRequest();
+request1.open('GET',link,true);
+var report = JSON.parse(this.response);
+JSON.stringify(report);
+alert(report);
+request1.send();
+}
+}
+request.send();
+        </script>
+    </body>
+</html>
