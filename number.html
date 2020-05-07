@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>numbers</title>
+</head>
+
+<body>
+    <div>
+        <input type="number" id="num">
+        <button onclick="change()">click</button>
+    </div>
+    <div id="value">
+
+    </div>
+    <div id="words">
+
+    </div>
+    <script>
+        function change(){
+            var onces=["","one","two","three","four","five","six","seven","eigth","nine"];
+            var elevens=["","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"];
+            var tens=["","ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"];
+            var val=document.getElementById("num").value;
+            console.log(val);
+            var val1=val.toString();
+            var li=val1.split("");
+            var i;
+            var words="only";
+            for(i=0;i<li.length;i++){
+                li[i]=parseInt(li[i]);
+            }
+            function single(x){
+                return onces[x];
+            }
+            function double(x,y){
+                if(x==1&&y==0){
+                    return tens[x];
+                }
+                else if(x==1){
+                    return elevens[y];
+                }
+                else if(x==0&&y==0){
+                    return "";
+                }
+                else{
+                    var z;
+                    z = tens[x]+" "+onces[y];
+                    return z;
+                }
+            }
+            var l=li.length;
+            console.log(l);
+            if(val==0){
+                words="zero "+words;
+            }
+            else if(val>0){
+                if(l>1){
+                    var tns=double(li[l-2],li[l-1]);
+                    if(tns.length>0){
+                        words=tns+" "+words;
+                    } 
+                }
+                else if(l>0){
+                    var ons=single(li[l-1])
+                    if(ons.length>0){
+                        words= ons+" "+words;
+                    } 
+                }
+                if(l>2){
+                    if(li[l-3]==1){
+                        words="hundred "+words;
+                    }
+                    else{
+                        var ons=single(li[l-3])
+                        if(ons.length>0){
+                            words= ons+" hundred "+words;
+                        }
+                    }
+                    if(l>4){
+                        var tns=double(li[l-5],li[l-4]);
+                        if(tns.length>0){
+                            words=tns+" thousand "+words;
+                        } 
+                    }
+                    else if(l>3){
+                        if(li[l-4]==1){
+                            words="thousand "+words;
+                        }
+                        else{
+                            var ons=single(li[l-4])
+                            if(ons.length>0){
+                                words= ons+" thousand "+words;
+                            } 
+                        }
+                    }
+                    if(l>6){
+                        var tns=double(li[l-7],li[l-6]);
+                        if(tns.length>0){
+                            words=tns+" lack "+words;
+                        } 
+                    }
+                    else if(l>5){
+                        if(li[l-6]==1){
+                            words="lack "+words;
+                        }
+                        else{
+                            var ons=single(li[l-6])
+                            if(ons.length>0){
+                                words= ons+" lack "+words;
+                            } 
+                        }
+                    }
+                    if(l>8){
+                        var tns=double(li[l-9],li[l-8]);
+                        if(tns.length>0){
+                            words=tns+" crore "+words;
+                        } 
+                    }
+                    else if(l>7){
+                        if(li[l-8]==1){
+                            words="core "+words;
+                        }
+                        else{
+                            var ons=single(li[l-8])
+                            if(ons.length>0){
+                                words= ons+" core "+words;
+                            } 
+                        }
+                    }
+                }
+            }
+            else{
+                wrods="enter positive number";
+            }
+            console.log(words);
+            // var word1=words[0].toUpperCase+words.slice(1); 
+            // console.log(word1);
+            var va="Given value: "+val;
+            var word1="In words : "+words;
+            document.getElementById("value").innerHTML=va;
+            document.getElementById("words").innerHTML=word1;
+        }
+    </script>
+</body>
+
+</html>
